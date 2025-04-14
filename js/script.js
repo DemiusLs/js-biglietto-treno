@@ -55,66 +55,66 @@ console.log(userAgeInt);
 // Controllo l'età inserita sia stata messa in cifre
 if (isNaN(userAgeInt)) {
 
-    msgOutput =  `Inserisci un'età in cifre`;
+    msgOutput = `Inserisci un'età in cifre`;
 }
 else {
 
-    const userKm = prompt("Inserisci quanti chilometri dovrai percorrere");
-    const userKmFloat = parseFloat(userKm);
-
-    console.log(userKmFloat);
-    cost = kmCost * userKmFloat
-
-
-
-
     if (userAgeInt <= 18) {
         if (userAgeInt < 14) {
-
-            console.log("Sei un po' troppo minorenne, torna quando sarai più grande");
-            msgOutput
-
+            msgOutput = `Sei un po' troppo minorenne, torna quando sarai più grande`;
+            goot = false;
         }
         else {
-
-            discount =  20 / 100;
+            discount = 20 / 100;
             stringa = `Dato che hai ${userAgeInt} anni abbiamo applicato uno sconto del 20% `;
-
+            goot = true;
         }
-
-
     }
 
     else if (userAgeInt > 65) {
-
-
         if (userAgeInt <= 120) {
-
-            partialCost = cost * 40 / 100;
+            discount = 40 / 100;
             stringa = `Dato che hai ${userAgeInt} anni abbiamo applicato uno sconto del 40% `;
-
+            goot = true;
         }
         else {
-            console.log("Sei un po' troppo anziano");
+            msgOutput = `Sei un po' troppo anziano`;
+            goot = false;
         }
     }
     else {
-        partialCost = cost;
+        discount = 1;
         stringa = `Dato che hai ${userAgeInt} anni non abbiamo potuto applicare nessuno sconto`;
+        goot = true;
     }
 
-    const finalcost = partialCost.toFixed(2);
-    msgoutput = `${stringa} e il costo del biglietto è €${finalcost} `;
+
+    if (goot == true) {
+        const userKm = prompt("Inserisci quanti chilometri dovrai percorrere");
+        const userKmFloat = parseFloat(userKm);
+        console.log(userKmFloat);
+
+        if (isNaN(userKmFloat)) {
+
+            msgOutput = `Inserisci una distanza in cifre`;
+
+        }
+        else {
+
+
+
+            cost = kmCost * userKmFloat * discount;
+            const finalcost = cost.toFixed(2);
+            msgOutput = `${stringa} e il costo del biglietto è €${finalcost} `;
+
+        }
+    }
 
 
 
 }
 
-
-
-
-
-console.log(msgoutput);
+console.log(msgOutput);
 
 
 
